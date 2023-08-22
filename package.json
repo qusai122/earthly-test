@@ -3,16 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qusai122/earthly-test.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Qusai",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/qusai122/earthly-test/issues"
   },

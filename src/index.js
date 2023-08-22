@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 
 const app = express();
 
@@ -8,7 +8,7 @@ app.post("/reverse", (req, res) => {
   if (!req.body.message) {
     return res
       .status(400)
-      .json({ error: 'Missing "message" field in the request body' });
+      .json({ error: "Missing message field in the request body" });
   }
 
   const reversedMessage = req.body.message.split("").reverse().join("");
@@ -16,7 +16,7 @@ app.post("/reverse", (req, res) => {
   res.json({ reversedMessage });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
