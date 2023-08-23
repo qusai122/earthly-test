@@ -14,10 +14,18 @@ app.use(express.json());
 
 function validateReversMessage(req, res, next) {
   const message = req.body.message;
+  const contentType = req.get("Content-Type");
+
+  if (contentType !== "application/json") {
+    return res
+      .status(400)
+      .json({ error: "Invalid Content-Type. Expected application/json." });
+  }
 
   if (!message || typeof message !== "string") {
     return res.status(400).json({ error: "Invalid message format" });
   }
+
   if (message.length < 2 || message.length > 100) {
     return res
       .status(400)
@@ -29,7 +37,6 @@ function validateReversMessage(req, res, next) {
 
 app.post("/reverse", validateReversMessage, (req, res) => {
   const reversedMessage = req.body.message.split("").reverse().join("");
-
   res.json({ reversedMessage });
 });
 
