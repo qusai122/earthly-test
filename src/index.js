@@ -22,7 +22,13 @@ function validateReversMessage(req, res, next) {
       .json({ error: "Invalid Content-Type. Expected application/json." });
   }
 
-  if (!message || typeof message !== "string") {
+  if (!message) {
+    return res
+      .status(400)
+      .json({ error: "Missing message field in the request body" });
+  }
+
+  if (typeof message !== "string") {
     return res.status(400).json({ error: "Invalid message format" });
   }
 
@@ -53,3 +59,5 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+export { app };
