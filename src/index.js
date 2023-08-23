@@ -1,15 +1,8 @@
 import express from "express";
 import { reverseRouters } from "./routers/index.js";
+import { loggingMiddleware } from "./middlewares/index.js";
 const app = express();
-
-app.use((req, res, next) => {
-  const timestamp = new Date().toISOString();
-  const method = req.method;
-  const path = req.originalUrl;
-  console.log(`[${timestamp}] ${method} ${path}`);
-  next();
-});
-
+app.use(loggingMiddleware);
 app.use(express.json());
 
 function validateReversMessage(req, res, next) {
