@@ -1,5 +1,5 @@
 import express from "express";
-
+import { reverseRouters } from "./routers/index.js";
 const app = express();
 
 app.use((req, res, next) => {
@@ -41,10 +41,7 @@ function validateReversMessage(req, res, next) {
   next();
 }
 
-app.post("/reverse", validateReversMessage, (req, res) => {
-  const reversedMessage = req.body.message.split("").reverse().join("");
-  res.json({ reversedMessage });
-});
+app.use("/reverse", reverseRouters);
 
 app.use((err, req, res, next) => {
   if (err instanceof SyntaxError && err.status === 400 && "body" in err) {
